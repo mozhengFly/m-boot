@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.mozhengfly.boot</groupId>
+    <artifactId>build</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>m-boot</name>
+    <description>Boot project for Spring Boot</description>
+
+    <modules>
+        <module>mozhengfly-parent</module>
+        <module>mozhengfly-test</module>
+        <module>storage-spring-boot-starter</module>
+        <module>tool-spring-boot-starter</module>
+        <module>verification-spring-boot-starter</module>
+        <module>validation-spring-boot-starter</module>
+        <module>web-spring-boot-starter</module>
+    </modules>
+
+    <properties>
+        <!-- mozhengfly package -->
+        <revision>1.0.0-SNAPSHOT</revision>
+    </properties>
+</project>

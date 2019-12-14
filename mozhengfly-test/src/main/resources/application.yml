@@ -1,0 +1,15 @@
+mozhengfly:
+  storage:
+    aliyun:
+      enable: true
+      end-point: 
+      access-key-id: 
+      access-key-secret: 
+      bucket: 
+      remote-directory: 
+logging:
+  level:
+    root: info
+    com.mozhengfly.boot: debug
+  pattern:
+    console: "%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n"
