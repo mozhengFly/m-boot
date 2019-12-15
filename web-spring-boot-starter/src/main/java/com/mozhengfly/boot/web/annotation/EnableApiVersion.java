@@ -1,13 +1,9 @@
 package com.mozhengfly.boot.web.annotation;
 
-import com.mozhengfly.boot.web.configuration.VersionWebMvcRegistrations;
+import com.mozhengfly.boot.web.configuration.ApiVersionConfiguration;
 import org.springframework.context.annotation.Import;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * @Description 是否开启APIVersion
@@ -17,7 +13,7 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Import(VersionWebMvcRegistrations.class)
+@Import(ApiVersionConfiguration.class)
 @Documented
 public @interface EnableApiVersion {
 }

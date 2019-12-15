@@ -24,13 +24,13 @@ public class SwaggerConfiguration {
     @Bean
     public Docket buildDocket() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(buildApiInf())
+                .apiInfo(buildApiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.mozhengfly.boot.test.controller"))
                 .paths(PathSelectors.any()).build();
     }
 
-    private ApiInfo buildApiInf() {
+    private ApiInfo buildApiInfo() {
         return new ApiInfoBuilder()
                 .title("RestAPI Docs")
                 .termsOfServiceUrl("http://www.github.com/kongchen/swagger-maven-plugin")

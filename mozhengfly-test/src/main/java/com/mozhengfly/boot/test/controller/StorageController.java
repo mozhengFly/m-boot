@@ -4,10 +4,7 @@ import com.mozhengfly.boot.test.vo.User;
 import com.mozhengfly.boot.web.annotation.ApiVersion;
 import io.swagger.annotations.Api;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Description StorageController
@@ -21,7 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "StorageController", description = "存储管理")
 public class StorageController {
 
-    @RequestMapping("/hello")
+    @ApiVersion(2)
+    @PostMapping("/hello")
     public ResponseEntity hello(@RequestBody User user) {
         return ResponseEntity.ok("hello " + user.getName());
     }
