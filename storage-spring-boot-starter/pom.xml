@@ -8,6 +8,7 @@
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../mozhengfly-parent/pom.xml</relativePath>
     </parent>
+
     <artifactId>storage-spring-boot-starter</artifactId>
     <packaging>jar</packaging>
     <name>storage-spring-boot-starter</name>

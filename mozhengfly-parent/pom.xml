@@ -8,6 +8,7 @@
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
+
     <artifactId>mozhengfly-parent</artifactId>
     <packaging>pom</packaging>
     <name>mozhengfly-parent</name>
