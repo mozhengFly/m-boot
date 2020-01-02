@@ -51,6 +51,7 @@
         <druid.version>1.1.10</druid.version>
         <dynamic.datasource.version>2.5.4</dynamic.datasource.version>
         <jetcache.version>2.5.15</jetcache.version>
+        <jwt.version>0.9.1</jwt.version>
 
         <docker.image>mozhengfly</docker.image>
     </properties>
@@ -237,6 +238,13 @@
                 <groupId>com.alicp.jetcache</groupId>
                 <artifactId>jetcache-starter-redis</artifactId>
                 <version>${jetcache.version}</version>
+            </dependency>
+
+            <!-- Jwt -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jwt.version}</version>
             </dependency>
 
             <!-- HuTool -->
