@@ -101,6 +101,11 @@
                 <artifactId>web-spring-boot-starter</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>com.mozhengfly.boot</groupId>
+                <artifactId>code-generator</artifactId>
+                <version>${revision}</version>
+            </dependency>
 
             <!-- mybatis starter -->
             <dependency>

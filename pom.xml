@@ -17,6 +17,7 @@
         <module>verification-spring-boot-starter</module>
         <module>validation-spring-boot-starter</module>
         <module>web-spring-boot-starter</module>
+        <module>code-generator</module>
     </modules>
 
     <properties>
