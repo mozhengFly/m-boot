@@ -26,6 +26,11 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.mozhengfly.boot</groupId>
+            <artifactId>tool-spring-boot-starter</artifactId>
+        </dependency>
+
         <!-- MyBatis Plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
