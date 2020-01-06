@@ -1,10 +1,10 @@
 package com.mozhengfly.boot.web.converts;
 
+import com.mozhengfly.boot.tool.constants.DateConstants;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.FastDateFormat;
 import org.springframework.core.convert.converter.Converter;
-import org.springframework.stereotype.Component;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -17,39 +17,22 @@ import java.util.Date;
  */
 public class DateConverter implements Converter<String, Date> {
 
-    private static final String dateFormat = "yyyy-MM-dd HH:mm:ss";
-    private static final String shortDateFormat = "yyyy-MM-dd";
-    private static final String dateFormat2 = "yyyy/MM/dd HH:mm:ss";
-    private static final String shortDateFormat2 = "yyyy/MM/dd";
+    private static final String COLON = ":";
 
     @Override
     public Date convert(String source) {
+        source = StringUtils.trim(source);
         if (StringUtils.isBlank(source)) {
             return null;
         }
-        source = source.trim();
+        source = source.replace("/", "-");
         try {
-            SimpleDateFormat formatter;
-            if (source.contains("-")) {
-                if (source.contains(":")) {
-                    formatter = new SimpleDateFormat(dateFormat);
-                } else {
-                    formatter = new SimpleDateFormat(shortDateFormat);
-                }
-                Date dtDate = formatter.parse(source);
-                return dtDate;
-            } else if (source.contains("/")) {
-                if (source.contains(":")) {
-                    formatter = new SimpleDateFormat(dateFormat2);
-                } else {
-                    formatter = new SimpleDateFormat(shortDateFormat2);
-                }
-                Date dtDate = formatter.parse(source);
-                return dtDate;
+            if (source.contains(COLON)) {
+                return FastDateFormat.getInstance(DateConstants.DATE_TIME_FORMAT).parse(source);
             }
+            return FastDateFormat.getInstance(DateConstants.DATE_FORMAT).parse(source);
         } catch (Exception e) {
             throw new RuntimeException(String.format("parser %s to Date fail", source));
         }
-        throw new RuntimeException(String.format("parser %s to Date fail", source));
     }
 }
