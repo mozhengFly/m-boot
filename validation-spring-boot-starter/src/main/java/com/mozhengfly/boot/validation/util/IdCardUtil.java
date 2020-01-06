@@ -2,6 +2,7 @@ package com.mozhengfly.boot.validation.util;
 
 import com.mozhengfly.boot.validation.constants.ProvinceEnum;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StringUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,7 +34,7 @@ public final class IdCardUtil {
      * @return  true 是身份证号 false 不是身份证号
      */
     public static boolean isIdCard(String idCard) {
-        if (idCard == null || idCard == "") {
+        if (StringUtils.isEmpty(idCard)) {
             return false;
         }
         // 正则匹配校验

@@ -81,15 +81,32 @@ public class DateCompareValidator implements ConstraintValidator<DateCompare, Ob
         }
     }
 
+    /**
+     * 是否是小于比较
+     *
+     * @return
+     */
     private boolean isLess() {
         return OperatorEnum.LESS.getOperator().equals(this.operatorEnum.getOperator());
     }
 
+    /**
+     * String to LocalDate
+     *
+     * @param date
+     * @return
+     */
     private LocalDate string2LocalDate(String date) {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return LocalDate.parse(date, fmt);
     }
 
+    /**
+     * Date to LocalDate
+     *
+     * @param date date
+     * @return
+     */
     private LocalDate date2LocalDate(Date date) {
         Instant instant = date.toInstant();
         ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());

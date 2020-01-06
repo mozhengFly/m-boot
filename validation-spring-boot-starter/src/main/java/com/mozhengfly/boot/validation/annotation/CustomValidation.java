@@ -1,6 +1,6 @@
 package com.mozhengfly.boot.validation.annotation;
 
-import com.mozhengfly.boot.validation.AbstractValidator;
+import com.mozhengfly.boot.validation.AbstractCustomValidator;
 import com.mozhengfly.boot.validation.validator.CustomValidator;
 
 import javax.validation.Constraint;
@@ -23,7 +23,10 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = CustomValidator.class)
 public @interface CustomValidation {
 
-    Class<? extends AbstractValidator> proxy();
+    /**
+     * 代理类 继承自 AbstractValidator
+     */
+    Class<? extends AbstractCustomValidator> proxy();
 
     String message() default "";
 

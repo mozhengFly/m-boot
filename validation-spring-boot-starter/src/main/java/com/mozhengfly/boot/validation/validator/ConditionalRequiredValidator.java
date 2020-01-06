@@ -46,10 +46,16 @@ public class ConditionalRequiredValidator implements ConstraintValidator<Conditi
             // 条件不满足 认为成功
             return true;
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            throw new CustomValidationException("获取字段属性值出错", e);
+            throw new CustomValidationException(String.format("获取字段[%s]属性值出错", this.field), e);
         }
     }
 
+    /**
+     * 执行表达式
+     * @param expression    表达式
+     * @param map   上下文数据
+     * @return
+     */
     public Object execExpression(String expression, Map<String, Object> map) {
         Expression e = new JexlEngine().createExpression(expression);
         JexlContext jexlContext = new MapContext();

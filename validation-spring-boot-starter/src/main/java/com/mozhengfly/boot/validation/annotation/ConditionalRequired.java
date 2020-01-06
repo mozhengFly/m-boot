@@ -20,10 +20,18 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = ConditionalRequiredValidator.class)
 public @interface ConditionalRequired {
 
-    // 需要验证的必填字段
+    /**
+     * 需要验证的必填字段
+     */
     String field();
 
-    // 条件表达式
+    /**
+     * 条件表达式 例子：
+     * '01'.equals(status) 其中status为String字段
+     * 1 == status 其中status为int类型值
+     * '01'.equals(status) && 1 == sfyx 状态为01并且有效
+     * ('01'.equals(status) && 1 == sfyx) || 'admin'.equals(username) 状态为01并且有效 或者是username=admin
+     */
     String condition();
 
     String message() default "{condition}表达式返回值为false";

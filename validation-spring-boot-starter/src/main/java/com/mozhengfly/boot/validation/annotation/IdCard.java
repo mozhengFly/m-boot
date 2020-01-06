@@ -9,8 +9,10 @@ import java.lang.annotation.*;
 /**
  * IdCard
  *
- * @author mozhengfly
- * @version 1.0.0
+ * @Description 只校验身份号
+ * @Author wangchonglin
+ * @Date 2020-01-06 16:12:18
+ * @Version 1.0.0
  */
 @Documented
 @Target({ElementType.TYPE, ElementType.FIELD})

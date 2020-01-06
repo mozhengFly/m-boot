@@ -1,6 +1,6 @@
 package com.mozhengfly.boot.validation.validator;
 
-import com.mozhengfly.boot.validation.AbstractValidator;
+import com.mozhengfly.boot.validation.AbstractCustomValidator;
 import com.mozhengfly.boot.validation.annotation.CustomValidation;
 import com.mozhengfly.boot.validation.exception.CustomValidationException;
 
@@ -17,7 +17,7 @@ import javax.validation.ConstraintValidatorContext;
  */
 public class CustomValidator implements ConstraintValidator<CustomValidation, Object> {
 
-    Class<? extends AbstractValidator> proxy;
+    private Class<? extends AbstractCustomValidator> proxy;
 
     @Override
     public void initialize(CustomValidation constraintAnnotation) {
@@ -27,10 +27,10 @@ public class CustomValidator implements ConstraintValidator<CustomValidation, Ob
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
         try {
-            AbstractValidator abstractValidator = this.proxy.newInstance();
+            AbstractCustomValidator abstractValidator = this.proxy.newInstance();
             return abstractValidator.isValid(value);
         } catch (InstantiationException | IllegalAccessException e) {
-            throw new CustomValidationException("实例化对象出错", e);
+            throw new CustomValidationException(String.format("根据类[%s]实例化对象出错", this.proxy.getClass().getName()), e);
         }
     }
 }
