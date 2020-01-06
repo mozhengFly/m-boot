@@ -42,6 +42,7 @@
         <commons.pool2.version>2.6.0</commons.pool2.version>
         <commons.io.version>2.6</commons.io.version>
         <commons.lang.version>3.7</commons.lang.version>
+        <commons.beanutils.version>1.9.4</commons.beanutils.version>
         <commons.upload.version>1.3.3</commons.upload.version>
         <commons.collections.version>3.2.1</commons.collections.version>
         <alibaba.fastjson.version>1.2.56</alibaba.fastjson.version>
@@ -191,6 +192,13 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons.lang.version}</version>
+            </dependency>
+
+            <!--commons commons-beanutils-->
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons.beanutils.version}</version>
             </dependency>
 
             <!--commons collections-->
