@@ -12,10 +12,7 @@ import org.springframework.util.StringUtils;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.lang.reflect.InvocationTargetException;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
@@ -63,6 +60,14 @@ public class DateCompareValidator implements ConstraintValidator<DateCompare, Ob
             } else if (startValue instanceof Date && endValue instanceof Date) {
                 startDate = date2LocalDate((Date) startValue);
                 endDate = date2LocalDate((Date) endValue);
+            } else if (startValue instanceof LocalDateTime && endValue instanceof LocalDateTime) {
+                LocalDateTime startTime = (LocalDateTime) startValue;
+                LocalDateTime endTime = (LocalDateTime) endValue;
+                if (isLess()) {
+                    return startTime.isBefore(endTime);
+                } else {
+                    return startTime.isBefore(endTime) || startTime.isEqual(endTime);
+                }
             } else {
                 throw new CustomValidationException("start和end字段类型不正确");
             }
