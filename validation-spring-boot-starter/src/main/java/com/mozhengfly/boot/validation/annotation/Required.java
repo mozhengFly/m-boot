@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 /**
  * Required
  *
- * @Description Required
+ * @Description Required - just a test
  * @Author wangchonglin
  * @Date 2020-01-06 16:12:18
  * @Version 1.0.0
@@ -19,6 +19,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Repeatable(Required.List.class)
 @Constraint(validatedBy = RequiredValidator.class)
+@Deprecated
 public @interface Required {
 
     boolean required() default true;

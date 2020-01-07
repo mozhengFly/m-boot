@@ -14,6 +14,7 @@ import javax.validation.ConstraintValidatorContext;
  * @Date 2020-01-06 16:13:13
  * @Version 1.0.0
  */
+@Deprecated
 public class RequiredValidator implements ConstraintValidator<Required, Object> {
 
     private boolean required;
