@@ -5,10 +5,7 @@ import com.mozhengfly.boot.validation.validator.CustomValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * CustomValidation
@@ -18,8 +15,10 @@ import java.lang.annotation.Target;
  * @Date 2020-01-06 14:18:33
  * @Version 1.0.0
  */
+@Documented
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
+@Repeatable(CustomValidation.List.class)
 @Constraint(validatedBy = CustomValidator.class)
 public @interface CustomValidation {
 
@@ -34,4 +33,10 @@ public @interface CustomValidation {
 
     Class<? extends Payload>[] payload() default {};
 
+    @Documented
+    @Target({ElementType.TYPE})
+    @Retention(RetentionPolicy.RUNTIME)
+    @interface List {
+        CustomValidation[] value();
+    }
 }

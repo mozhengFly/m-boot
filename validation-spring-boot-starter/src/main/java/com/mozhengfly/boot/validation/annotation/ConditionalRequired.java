@@ -17,6 +17,7 @@ import java.lang.annotation.*;
 @Documented
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
+@Repeatable(ConditionalRequired.List.class)
 @Constraint(validatedBy = ConditionalRequiredValidator.class)
 public @interface ConditionalRequired {
 
