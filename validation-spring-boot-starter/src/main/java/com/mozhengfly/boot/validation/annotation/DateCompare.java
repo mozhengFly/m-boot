@@ -21,6 +21,7 @@ import java.lang.annotation.*;
 @Documented
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
+@Repeatable(DateCompare.List.class)
 @Constraint(validatedBy = DateCompareValidator.class)
 public @interface DateCompare {
 
@@ -44,4 +45,11 @@ public @interface DateCompare {
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
+
+    @Documented
+    @Target({ElementType.TYPE})
+    @Retention(RetentionPolicy.RUNTIME)
+    @interface List {
+        DateCompare[] value();
+    }
 }

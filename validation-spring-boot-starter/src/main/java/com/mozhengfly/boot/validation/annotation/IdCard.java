@@ -17,6 +17,7 @@ import java.lang.annotation.*;
 @Documented
 @Target({ElementType.TYPE, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
+@Repeatable(IdCard.List.class)
 @Constraint(validatedBy = IdCardValidator.class)
 public @interface IdCard {
 
@@ -25,4 +26,11 @@ public @interface IdCard {
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
+
+    @Documented
+    @Target({ElementType.TYPE, ElementType.FIELD})
+    @Retention(RetentionPolicy.RUNTIME)
+    @interface List {
+        IdCard[] value();
+    }
 }

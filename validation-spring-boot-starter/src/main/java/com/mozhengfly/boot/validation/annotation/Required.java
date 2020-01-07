@@ -17,6 +17,7 @@ import java.lang.annotation.*;
 @Documented
 @Target({ElementType.FIELD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
+@Repeatable(Required.List.class)
 @Constraint(validatedBy = RequiredValidator.class)
 public @interface Required {
 
@@ -27,4 +28,11 @@ public @interface Required {
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
+
+    @Documented
+    @Target({ElementType.TYPE, ElementType.FIELD})
+    @Retention(RetentionPolicy.RUNTIME)
+    @interface List {
+        Required[] value();
+    }
 }
