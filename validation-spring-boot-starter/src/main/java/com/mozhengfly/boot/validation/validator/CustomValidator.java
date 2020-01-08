@@ -24,6 +24,7 @@ public class CustomValidator implements ConstraintValidator<CustomValidation, Ob
         this.proxy = constraintAnnotation.proxy();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
         try {
