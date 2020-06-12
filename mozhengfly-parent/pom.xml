@@ -405,7 +405,7 @@
                     <artifactId>dockerfile-maven-plugin</artifactId>
                     <version>1.4.10</version>
                     <configuration>
-                        <repository>${docker.image}/${project.name}:${project.version}</repository>
+                        <repository>${docker.image}/${project.name}</repository>
                         <googleContainerRegistryEnabled>false</googleContainerRegistryEnabled>
                         <retryCount>0</retryCount>
                         <tag>1.0.0</tag>
