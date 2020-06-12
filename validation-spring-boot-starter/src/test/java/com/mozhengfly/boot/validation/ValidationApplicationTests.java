@@ -31,7 +31,7 @@ public class ValidationApplicationTests {
         Person person = new Person();
         person.setIdCard("11010119840901009X");
         mockMvc.perform(MockMvcRequestBuilders.post("/person")
-                .contentType(MediaType.APPLICATION_JSON_UTF8).content(JSONObject.toJSONString(person)))
+                .contentType(MediaType.APPLICATION_JSON).content(JSONObject.toJSONString(person)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
@@ -43,7 +43,7 @@ public class ValidationApplicationTests {
         person.setLastName("chonglin");
         person.setIdCard("11010119840901009X");
         mockMvc.perform(MockMvcRequestBuilders.post("/person")
-                .contentType(MediaType.APPLICATION_JSON_UTF8).content(JSONObject.toJSONString(person)))
+                .contentType(MediaType.APPLICATION_JSON).content(JSONObject.toJSONString(person)))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
@@ -54,7 +54,7 @@ public class ValidationApplicationTests {
         Person person = new Person();
         person.setIdCard("110101198409010099");
         mockMvc.perform(MockMvcRequestBuilders.post("/person")
-                .contentType(MediaType.APPLICATION_JSON_UTF8).content(JSONObject.toJSONString(person)))
+                .contentType(MediaType.APPLICATION_JSON).content(JSONObject.toJSONString(person)))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
@@ -65,7 +65,7 @@ public class ValidationApplicationTests {
         Person person = new Person();
         person.setIdCard("11010119840901009X");
         mockMvc.perform(MockMvcRequestBuilders.put("/person")
-                .contentType(MediaType.APPLICATION_JSON_UTF8).content(JSONObject.toJSONString(person)))
+                .contentType(MediaType.APPLICATION_JSON).content(JSONObject.toJSONString(person)))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
@@ -77,7 +77,7 @@ public class ValidationApplicationTests {
         person.setId("123");
         person.setIdCard("11010119840901009X");
         mockMvc.perform(MockMvcRequestBuilders.put("/person")
-                .contentType(MediaType.APPLICATION_JSON_UTF8).content(JSONObject.toJSONString(person)))
+                .contentType(MediaType.APPLICATION_JSON).content(JSONObject.toJSONString(person)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
@@ -90,7 +90,7 @@ public class ValidationApplicationTests {
         person.setCreateTime(LocalDateTime.of(2018, 6, 12, 0, 0));
         person.setUpdateTime(LocalDateTime.of(2019, 6, 12, 0, 0));
         mockMvc.perform(MockMvcRequestBuilders.post("/person")
-                .contentType(MediaType.APPLICATION_JSON_UTF8).content(JSONObject.toJSONString(person)))
+                .contentType(MediaType.APPLICATION_JSON).content(JSONObject.toJSONString(person)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
@@ -103,7 +103,7 @@ public class ValidationApplicationTests {
         person.setCreateTime(LocalDateTime.of(2018, 6, 12, 0, 0));
         person.setUpdateTime(LocalDateTime.of(2017, 6, 12, 0, 0));
         mockMvc.perform(MockMvcRequestBuilders.post("/person")
-                .contentType(MediaType.APPLICATION_JSON_UTF8).content(JSONObject.toJSONString(person)))
+                .contentType(MediaType.APPLICATION_JSON).content(JSONObject.toJSONString(person)))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
@@ -115,7 +115,7 @@ public class ValidationApplicationTests {
         person.setAge(26);
         person.setIdCard("11010119840901009X");
         mockMvc.perform(MockMvcRequestBuilders.post("/person")
-                .contentType(MediaType.APPLICATION_JSON_UTF8).content(JSONObject.toJSONString(person)))
+                .contentType(MediaType.APPLICATION_JSON).content(JSONObject.toJSONString(person)))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
@@ -127,7 +127,7 @@ public class ValidationApplicationTests {
         person.setAge(8);
         person.setIdCard("11010119840901009X");
         mockMvc.perform(MockMvcRequestBuilders.post("/person")
-                .contentType(MediaType.APPLICATION_JSON_UTF8).content(JSONObject.toJSONString(person)))
+                .contentType(MediaType.APPLICATION_JSON).content(JSONObject.toJSONString(person)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
@@ -139,7 +139,7 @@ public class ValidationApplicationTests {
         person.setLimitLogin(true);
         person.setIdCard("11010119840901009X");
         mockMvc.perform(MockMvcRequestBuilders.post("/person")
-                .contentType(MediaType.APPLICATION_JSON_UTF8).content(JSONObject.toJSONString(person)))
+                .contentType(MediaType.APPLICATION_JSON).content(JSONObject.toJSONString(person)))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
@@ -152,7 +152,7 @@ public class ValidationApplicationTests {
         person.setPassword("123");
         person.setIdCard("11010119840901009X");
         mockMvc.perform(MockMvcRequestBuilders.post("/person")
-                .contentType(MediaType.APPLICATION_JSON_UTF8).content(JSONObject.toJSONString(person)))
+                .contentType(MediaType.APPLICATION_JSON).content(JSONObject.toJSONString(person)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();

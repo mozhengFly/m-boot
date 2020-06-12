@@ -3,8 +3,9 @@ package com.mozhengfly.boot.validation.constants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * 省份枚举类
@@ -159,13 +160,7 @@ public enum ProvinceEnum {
 
     private String code;
 
-    private static Map<String, ProvinceEnum> map = new HashMap<>();
-
-    static {
-        for (ProvinceEnum provinceEnum : ProvinceEnum.values()) {
-            map.put(provinceEnum.getCode(), provinceEnum);
-        }
-    }
+    private static Set<String> set = Arrays.stream(ProvinceEnum.values()).map(ProvinceEnum::getCode).collect(Collectors.toSet());
 
     /**
      * 判断是否是省份
@@ -174,7 +169,7 @@ public enum ProvinceEnum {
      * @return true 是省份 false 不是省份
      */
     public static boolean isProvince(String code) {
-        return map.containsKey(code);
+        return set.contains(code);
     }
 
 }

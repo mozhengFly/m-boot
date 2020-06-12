@@ -3,16 +3,15 @@ package com.mozhengfly.boot.validation.validator;
 import com.mozhengfly.boot.validation.annotation.ConditionalRequired;
 import com.mozhengfly.boot.validation.exception.CustomValidationException;
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.commons.jexl2.Expression;
-import org.apache.commons.jexl2.JexlContext;
-import org.apache.commons.jexl2.JexlEngine;
-import org.apache.commons.jexl2.MapContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
 import org.springframework.util.ObjectUtils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
 
 /**
  * ConditionalRequiredValidator
@@ -36,33 +35,20 @@ public class ConditionalRequiredValidator implements ConstraintValidator<Conditi
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
-        try {
-            Object fieldValue = PropertyUtils.getProperty(value, this.field);
-            Object res = execExpression(this.condition, PropertyUtils.describe(value));
-            // 条件校验成功
-            if (res != null && res instanceof Boolean && (Boolean )res) {
+        ExpressionParser parser = new SpelExpressionParser();
+        Expression conditionExpression = parser.parseExpression(this.condition);
+        Boolean res = conditionExpression.getValue(new StandardEvaluationContext(value), Boolean.class);
+        // 条件校验成功，才进行进一步的条件验证
+        if (res) {
+            try {
+                Object fieldValue = PropertyUtils.getProperty(value, this.field);
                 return !ObjectUtils.isEmpty(fieldValue);
+            } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                throw new CustomValidationException(String.format("获取字段[%s]属性值出错", this.field), e);
             }
-            // 条件不满足 认为成功
-            return true;
-        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            throw new CustomValidationException(String.format("获取字段[%s]属性值出错", this.field), e);
         }
-    }
-
-    /**
-     * 执行表达式
-     * @param expression    表达式
-     * @param map   上下文数据
-     * @return
-     */
-    public Object execExpression(String expression, Map<String, Object> map) {
-        Expression e = new JexlEngine().createExpression(expression);
-        JexlContext jexlContext = new MapContext();
-        map.entrySet().forEach(entry -> {
-            jexlContext.set(entry.getKey(), entry.getValue());
-        });
-        return e.evaluate(jexlContext);
+        // 条件不满足 认为成功
+        return true;
     }
 
 }
