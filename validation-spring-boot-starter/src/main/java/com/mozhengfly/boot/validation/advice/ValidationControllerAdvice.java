@@ -1,6 +1,6 @@
-package com.mozhengfly.boot.validation.business.advice;
+package com.mozhengfly.boot.validation.advice;
 
-import com.mozhengfly.boot.validation.business.entity.ResultInfo;
+import com.mozhengfly.boot.validation.ResultInfo;
 import com.mozhengfly.boot.validation.exception.CustomValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -51,13 +51,6 @@ public class ValidationControllerAdvice {
         return new ResultInfo(HttpStatus.BAD_REQUEST.value(), getMessage(errors));
     }
 
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
-    public ResultInfo exception(HttpServletRequest request, Exception e) {
-        return new ResultInfo(HttpStatus.BAD_REQUEST.value(), e.getMessage());
-    }
-
     private String getMessage(List<ObjectError> errors) {
         if (CollectionUtils.isEmpty(errors)) {
             return "";
@@ -66,6 +59,9 @@ public class ValidationControllerAdvice {
         errors.stream().forEach(error -> {
             sb.append(error.getDefaultMessage()).append("；");
         });
+        if (sb.length() > 0) {
+            sb.deleteCharAt(sb.length() - 1);
+        }
         return sb.toString();
     }
 }

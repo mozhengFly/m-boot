@@ -1,4 +1,4 @@
-package com.mozhengfly.boot.validation.business.entity;
+package com.mozhengfly.boot.validation;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
