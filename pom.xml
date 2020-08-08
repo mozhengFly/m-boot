@@ -13,6 +13,7 @@
         <module>mozhengfly-parent</module>
         <module>mozhengfly-test</module>
         <module>storage-spring-boot-starter</module>
+        <module>security-spring-boot-starter</module>
         <module>tool-spring-boot-starter</module>
         <module>verification-spring-boot-starter</module>
         <module>validation-spring-boot-starter</module>

@@ -25,7 +25,7 @@ import java.util.List;
 @Aspect
 public class BatchAspect {
 
-    @Around("@annotation(com.thunisoft.imp.sync.config.BatchAction)")
+    @Around("@annotation(com.mozhengfly.boot.web.annotation.BatchAction)")
     public Object run(ProceedingJoinPoint joinPoint) throws Throwable {
         //获取方法参数值数组
         Object[] args = joinPoint.getArgs();

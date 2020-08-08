@@ -97,6 +97,11 @@
             </dependency>
             <dependency>
                 <groupId>com.mozhengfly.boot</groupId>
+                <artifactId>security-spring-boot-starter</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mozhengfly.boot</groupId>
                 <artifactId>tool-spring-boot-starter</artifactId>
                 <version>${revision}</version>
             </dependency>
