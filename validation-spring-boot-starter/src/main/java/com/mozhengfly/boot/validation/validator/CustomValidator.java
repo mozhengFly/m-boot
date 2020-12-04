@@ -31,7 +31,7 @@ public class CustomValidator implements ConstraintValidator<CustomValidation, Ob
             AbstractCustomValidator abstractValidator = this.proxy.newInstance();
             return abstractValidator.isValid(value);
         } catch (InstantiationException | IllegalAccessException e) {
-            throw new CustomValidationException(String.format("根据类[%s]实例化对象出错", this.proxy.getClass().getName()), e);
+            throw new CustomValidationException(String.format("根据类[%s]实例化对象出错", this.proxy.getName()), e);
         }
     }
 }

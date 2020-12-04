@@ -50,10 +50,7 @@ public final class IdCardUtil {
             return false;
         }
         // 校验最后一位
-        if (!checkLastCharacter(idCard)) {
-            return false;
-        }
-        return true;
+        return checkLastCharacter(idCard);
     }
 
     /**

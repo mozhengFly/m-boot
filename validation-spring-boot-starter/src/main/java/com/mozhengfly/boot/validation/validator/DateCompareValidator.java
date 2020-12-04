@@ -110,7 +110,6 @@ public class DateCompareValidator implements ConstraintValidator<DateCompare, Ob
     private LocalDate date2LocalDate(Date date) {
         Instant instant = date.toInstant();
         ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
-        LocalDate localDate = zdt.toLocalDate();
-        return localDate;
+        return zdt.toLocalDate();
     }
 }

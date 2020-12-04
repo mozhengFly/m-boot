@@ -27,9 +27,7 @@ public class StringFieldValidator implements ConstraintValidator<StringField, St
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
         if (this.in.length > 0) {
             // 配置了才判断
-            if (!Arrays.asList(this.in).contains(s)) {
-                return false;
-            }
+            return Arrays.asList(this.in).contains(s);
         }
         return true;
     }

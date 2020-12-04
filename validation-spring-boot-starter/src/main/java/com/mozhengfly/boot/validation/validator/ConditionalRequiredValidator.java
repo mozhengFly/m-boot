@@ -39,7 +39,7 @@ public class ConditionalRequiredValidator implements ConstraintValidator<Conditi
         Expression conditionExpression = parser.parseExpression(this.condition);
         Boolean res = conditionExpression.getValue(new StandardEvaluationContext(value), Boolean.class);
         // 条件校验成功，才进行进一步的条件验证
-        if (res) {
+        if (res != null && res) {
             try {
                 Object fieldValue = PropertyUtils.getProperty(value, this.field);
                 return !ObjectUtils.isEmpty(fieldValue);

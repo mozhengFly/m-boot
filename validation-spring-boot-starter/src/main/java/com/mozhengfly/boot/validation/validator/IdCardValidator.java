@@ -20,10 +20,6 @@ import javax.validation.ConstraintValidatorContext;
 public class IdCardValidator implements ConstraintValidator<IdCard, String> {
 
     @Override
-    public void initialize(IdCard constraintAnnotation) {
-    }
-
-    @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         // 只在身份号有值的时候才校验 没值的时候不校验
         if (StringUtils.isEmpty(value)) {
