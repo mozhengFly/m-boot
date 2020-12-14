@@ -56,6 +56,7 @@
         <dynamic.datasource.version>2.5.4</dynamic.datasource.version>
         <jetcache.version>2.5.15</jetcache.version>
         <jwt.version>0.9.1</jwt.version>
+        <guava.version>29.0-jre</guava.version>
 
         <docker.image>mozhengfly</docker.image>
     </properties>
@@ -373,6 +374,11 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-socket</artifactId>
                 <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
             </dependency>
 
         </dependencies>
