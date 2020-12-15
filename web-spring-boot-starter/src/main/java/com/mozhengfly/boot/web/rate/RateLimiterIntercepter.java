@@ -7,9 +7,9 @@
 
 package com.mozhengfly.boot.web.rate;
 
+import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,17 +25,16 @@ import java.io.PrintWriter;
  * @Version 1.0.0
  */
 @Slf4j
-@Component
+@AllArgsConstructor
 public class RateLimiterIntercepter implements HandlerInterceptor {
 
-    @Setter
-    private RateComponent rateComponent;
+    private RateManager rateManager;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
         log.info("request.getPathInfo();{}", request.getRequestURI());
         log.info("request.getPathInfo();{}", request.getMethod());
-        if (rateComponent.tryAcquire()) {
+        if (rateManager.tryAcquire()) {
             return true;
         } else {
             //设置编码格式

@@ -1,11 +1,11 @@
 /**
  * @projectName build
  * @package com.mozhengfly.boot.web.rate
- * @className com.mozhengfly.boot.web.rate.IRequestMappingAdapter
+ * @className com.mozhengfly.boot.web.context.request.IRequestMappingAdapter
  * @copyright Copyright 2020 Thuisoft, Inc. All rights reserved.
  */
 
-package com.mozhengfly.boot.web.rate;
+package com.mozhengfly.boot.web.context.request;
 
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 
@@ -26,7 +26,7 @@ public interface IRequestMappingAdapter {
      * @param method {@link Method}
      * @param handlerType {@link Class}
      * @param info {@link RequestMappingInfo}
-     * @return
+     * @return {@link RequestMappingInfo}
      */
     default RequestMappingInfo adapter(Method method, Class<?> handlerType, RequestMappingInfo info) {
         return info;

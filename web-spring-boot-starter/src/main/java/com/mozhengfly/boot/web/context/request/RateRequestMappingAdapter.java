@@ -1,12 +1,14 @@
 /**
  * @projectName data-synchronization
  * @package com.mozhengfly.boot.web.rate
- * @className com.mozhengfly.boot.web.rate.RateRequestMappingAdapter
+ * @className com.mozhengfly.boot.web.context.request.RateRequestMappingAdapter
  * @copyright Copyright 2020 Thunisoft, Inc. All rights reserved.
  */
 
-package com.mozhengfly.boot.web.rate;
+package com.mozhengfly.boot.web.context.request;
 
+import com.mozhengfly.boot.web.rate.RateLimit;
+import com.mozhengfly.boot.web.rate.RateManager;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.AnnotatedElementUtils;
@@ -25,13 +27,14 @@ import java.lang.reflect.Method;
 @AllArgsConstructor
 public class RateRequestMappingAdapter implements IRequestMappingAdapter {
 
-    private RateComponent rateComponent;
+    private RateManager rateManager;
 
     @Override
     public RequestMappingInfo adapter(Method method, Class<?> handlerType, RequestMappingInfo info) {
         RateLimit rateLimit = AnnotatedElementUtils.findMergedAnnotation(method, RateLimit.class);
         if (rateLimit != null) {
-            log.info("xianliu : {}", rateLimit.value());
+            log.info("xianliu : {}", info.getPatternsCondition().getPatterns());
+            log.info("xianliu : {}", rateLimit.permitsPerSecond());
         }
         return info;
     }

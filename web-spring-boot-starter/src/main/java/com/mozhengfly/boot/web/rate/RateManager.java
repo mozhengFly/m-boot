@@ -21,7 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @Date 2020-12-14 19:03:11
  * @Version 1.0.0
  */
-public class RateComponent {
+public class RateManager {
 
     private Map<String, RateLimiter> rateMap = new ConcurrentHashMap();
 

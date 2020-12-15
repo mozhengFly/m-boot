@@ -1,11 +1,11 @@
 /**
  * @projectName data-synchronization
  * @package com.mozhengfly.boot.web.rate
- * @className com.mozhengfly.boot.web.rate.VersionRequestMappingAdapter
+ * @className com.mozhengfly.boot.web.context.request.VersionRequestMappingAdapter
  * @copyright Copyright 2020 Thunisoft, Inc. All rights reserved.
  */
 
-package com.mozhengfly.boot.web.rate;
+package com.mozhengfly.boot.web.context.request;
 
 import com.mozhengfly.boot.web.annotation.ApiVersion;
 import lombok.extern.slf4j.Slf4j;

@@ -27,6 +27,7 @@ public class WebAppConfiguration {
     @PostConstruct
     public void initEditableValidation() {
         ConfigurableWebBindingInitializer initializer = (ConfigurableWebBindingInitializer) handlerAdapter.getWebBindingInitializer();
+        assert initializer != null;
         if (initializer.getConversionService() != null) {
             GenericConversionService genericConversionService = (GenericConversionService) initializer.getConversionService();
             genericConversionService.addConverter(new DateConverter());

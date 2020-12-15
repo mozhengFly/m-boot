@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 /**
  * RateLimit
  *
- * @Description TODO
+ * @Description 限流注解
  * @Author wangchonglin
  * @Date 2020-12-14 19:39:26
  * @Version 1.0.0
@@ -21,5 +21,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface RateLimit {
-    String value() default "api";
+    double permitsPerSecond() default 10D;
 }

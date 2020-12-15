@@ -1,8 +1,10 @@
 package com.mozhengfly.boot.web.context;
 
-import com.mozhengfly.boot.web.rate.IRequestMappingAdapter;
+import com.mozhengfly.boot.web.context.request.IRequestMappingAdapter;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcRegistrations;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+
+import java.util.List;
 
 /**
  * VersionWebMvcRegistrations
@@ -23,5 +25,9 @@ public class MoWebMvcRegistrations implements WebMvcRegistrations {
 
     public void addRequestMappingAdapter(IRequestMappingAdapter adapter) {
         moRequestMappingHandlerMapping.addRequestMappingAdapter(adapter);
+    }
+
+    public void addAllRequestMappingAdapters(List<IRequestMappingAdapter> requestMappingAdapters) {
+        moRequestMappingHandlerMapping.addAllRequestMappingAdapters(requestMappingAdapters);
     }
 }

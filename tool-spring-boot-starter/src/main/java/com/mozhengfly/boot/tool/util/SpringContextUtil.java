@@ -1,10 +1,17 @@
 package com.mozhengfly.boot.tool.util;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.MapUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @Description SpringContextUtil
@@ -76,4 +83,27 @@ public class SpringContextUtil implements ApplicationContextAware {
         return getApplicationContext().getBean(name, clazz);
     }
 
+    /**
+     * 获取所有的beans
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    public static <T> Map<String, T> getBeansOfType(Class<T> clazz) {
+        return getApplicationContext().getBeansOfType(clazz);
+    }
+
+    /**
+     * 获取所有的beans List
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    public static <T> List<T> getBeanListOfType(Class<T> clazz) {
+        Map<String, T> beansOfType = getApplicationContext().getBeansOfType(clazz);
+        if (MapUtils.isEmpty(beansOfType)) {
+            return Collections.emptyList();
+        }
+        return new ArrayList<>(beansOfType.values());
+    }
 }

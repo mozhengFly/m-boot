@@ -1,6 +1,6 @@
 package com.mozhengfly.boot.web.annotation;
 
-import com.mozhengfly.boot.web.configuration.ApiVersionConfiguration;
+import com.mozhengfly.boot.web.configuration.RequestMappingConfiguration;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
@@ -13,7 +13,7 @@ import java.lang.annotation.*;
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Import(ApiVersionConfiguration.class)
+@Import(RequestMappingConfiguration.class)
 @Documented
 public @interface EnableApiVersion {
 }

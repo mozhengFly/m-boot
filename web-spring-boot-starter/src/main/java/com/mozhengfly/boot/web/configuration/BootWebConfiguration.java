@@ -1,6 +1,5 @@
 package com.mozhengfly.boot.web.configuration;
 
-import com.mozhengfly.boot.web.annotation.EnableApiVersion;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
  * @Date 2019-12-23 14:52:16
  * @Version 1.0.0
  */
-@EnableApiVersion
 @ComponentScan("com.mozhengfly.boot.web")
 @Configuration
 public class BootWebConfiguration {
