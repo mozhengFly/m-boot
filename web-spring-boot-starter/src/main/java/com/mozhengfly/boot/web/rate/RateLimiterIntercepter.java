@@ -10,6 +10,7 @@ package com.mozhengfly.boot.web.rate;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,18 +29,17 @@ import java.io.PrintWriter;
 @AllArgsConstructor
 public class RateLimiterIntercepter implements HandlerInterceptor {
 
-    private RateManager rateManager;
+    private IRateStrategy rateStrategy;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-        log.info("request.getPathInfo();{}", request.getRequestURI());
-        log.info("request.getPathInfo();{}", request.getMethod());
-        if (rateManager.tryAcquire()) {
+        if (rateStrategy.tryAcquire(request.getMethod() + "_" + request.getRequestURI())) {
             return true;
         } else {
             //设置编码格式
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json;charset=UTF-8");
+            response.setStatus(HttpStatus.CONFLICT.value());
             PrintWriter pw = response.getWriter();
             pw.write("被限流了 请求失败");
             pw.flush();

@@ -4,8 +4,9 @@ import com.mozhengfly.boot.web.context.MoWebMvcRegistrations;
 import com.mozhengfly.boot.web.context.request.IRequestMappingAdapter;
 import com.mozhengfly.boot.web.context.request.RateRequestMappingAdapter;
 import com.mozhengfly.boot.web.context.request.VersionRequestMappingAdapter;
+import com.mozhengfly.boot.web.rate.GuavaRateLimiter;
+import com.mozhengfly.boot.web.rate.IRateStrategy;
 import com.mozhengfly.boot.web.rate.RateLimiterIntercepter;
-import com.mozhengfly.boot.web.rate.RateManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -42,8 +43,8 @@ public class RequestMappingConfiguration implements WebMvcConfigurer {
     }
 
     @Bean
-    public RateManager rateManager() {
-        return new RateManager();
+    public IRateStrategy guavaRateLimiter() {
+        return new GuavaRateLimiter();
     }
 
     @Order(1)
@@ -55,12 +56,12 @@ public class RequestMappingConfiguration implements WebMvcConfigurer {
     @Order(2)
     @Bean
     public IRequestMappingAdapter rateRequestMappingAdapter() {
-        return new RateRequestMappingAdapter(rateManager());
+        return new RateRequestMappingAdapter(guavaRateLimiter());
     }
 
     @Bean
     public RateLimiterIntercepter rateLimiterIntercepter() {
-        return new RateLimiterIntercepter(rateManager());
+        return new RateLimiterIntercepter(guavaRateLimiter());
     }
 
     @Override

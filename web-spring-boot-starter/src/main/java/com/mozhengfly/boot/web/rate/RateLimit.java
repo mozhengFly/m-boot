@@ -21,5 +21,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface RateLimit {
-    double permitsPerSecond() default 10D;
+    double value() default 10D;
 }
