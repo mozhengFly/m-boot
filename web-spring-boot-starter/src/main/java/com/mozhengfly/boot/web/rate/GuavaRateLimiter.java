@@ -9,6 +9,8 @@ package com.mozhengfly.boot.web.rate;
 
 import com.google.common.util.concurrent.RateLimiter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.AntPathMatcher;
+import org.springframework.util.ObjectUtils;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -21,18 +23,38 @@ import java.util.concurrent.ConcurrentHashMap;
  * @Date 2020-12-15 19:01:11
  * @Version 1.0.0
  */
+@SuppressWarnings("UnstableApiUsage")
 @Slf4j
 public class GuavaRateLimiter implements IRateStrategy {
 
-    private Map<String, RateLimiter> rateMap = new ConcurrentHashMap();
+    /**
+     * url method rateLimiter
+     */
+    private Map<String, Map<String, RateLimiter>> rateMap = new ConcurrentHashMap<>();
+
+    private AntPathMatcher antPathMatcher = new AntPathMatcher();
 
     @Override
-    public boolean tryAcquire(String url) {
-        return rateMap.get(url).tryAcquire();
+    public boolean tryAcquire(String url, String method) {
+        for (Map.Entry<String, Map<String, RateLimiter>> entry: rateMap.entrySet()) {
+            if (antPathMatcher.match(entry.getKey(), url)) {
+                RateLimiter rateLimiter = entry.getValue().get(method);
+                if (!ObjectUtils.isEmpty(rateLimiter)) {
+                    return rateLimiter.tryAcquire();
+                }
+            }
+        }
+        return true;
     }
 
     @Override
-    public void addRateLimit(String url, double permitsPerSecond) {
-        rateMap.put(url, RateLimiter.create(permitsPerSecond));
+    public void addRateLimit(String url, String method, double permitsPerSecond) {
+        Map<String, RateLimiter> map = rateMap.get(url);
+        if (ObjectUtils.isEmpty(map)) {
+            map = new ConcurrentHashMap<>();
+            rateMap.put(url, map);
+        }
+        map.put(method, RateLimiter.create(permitsPerSecond));
     }
+
 }

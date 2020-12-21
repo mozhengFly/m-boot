@@ -33,7 +33,7 @@ public class RateLimiterIntercepter implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-        if (rateStrategy.tryAcquire(request.getMethod() + "_" + request.getRequestURI())) {
+        if (rateStrategy.tryAcquire(request.getRequestURI(), request.getMethod())) {
             return true;
         } else {
             //设置编码格式

@@ -20,14 +20,16 @@ public interface IRateStrategy {
     /**
      * 限流策略
      * @param url 访问url
+     * @param method 访问method
      * @return
      */
-    boolean tryAcquire(String url);
+    boolean tryAcquire(String url, String method);
 
     /**
      * 增加流量控制
      * @param url
+     * @param method
      * @param permitsPerSecond
      */
-    void addRateLimit(String url, double permitsPerSecond);
+    void addRateLimit(String url, String method, double permitsPerSecond);
 }

@@ -4,6 +4,7 @@ import com.mozhengfly.boot.test.vo.User;
 import com.mozhengfly.boot.web.annotation.ApiVersion;
 import io.swagger.annotations.Api;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.PatternMatchUtils;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -27,5 +28,13 @@ public class StorageController {
     @GetMapping("hi")
     public ResponseEntity hi() {
         return ResponseEntity.ok("mozhengfly");
+    }
+
+    @GetMapping("haha")
+    public String test() {
+        System.out.println(PatternMatchUtils.simpleMatch("/url/**", "/url/a"));
+        System.out.println(PatternMatchUtils.simpleMatch("/url/{a}}", "/url/a"));
+        System.out.println(PatternMatchUtils.simpleMatch("/url/*", "/url/a"));
+        return "A";
     }
 }
