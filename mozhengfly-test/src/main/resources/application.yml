@@ -2,14 +2,21 @@ mozhengfly:
   storage:
     aliyun:
       enable: true
-      end-point: 
-      access-key-id: 
-      access-key-secret: 
-      bucket: 
-      remote-directory: 
+      end-point:
+      access-key-id:
+      access-key-secret:
+      bucket:
+      remote-directory:
+
 logging:
   level:
     root: info
     com.mozhengfly.boot: debug
   pattern:
     console: "%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n"
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${datasource.database.host}/practice?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+    username: ${datasource.database.username}
+    password: ${datasource.database.password}
