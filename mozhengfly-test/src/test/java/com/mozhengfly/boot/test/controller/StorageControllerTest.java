@@ -45,7 +45,7 @@ public class StorageControllerTest {
         user.setBook(new String[]{"Chinese", "English", "Math"});
         user.setPen(penList);
         mockMvc.perform(MockMvcRequestBuilders.get("/hello")
-                .contentType(MediaType.APPLICATION_JSON_UTF8).content(JSONObject.toJSONString(user)))
+                .contentType(MediaType.APPLICATION_JSON).content(JSONObject.toJSONString(user)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
