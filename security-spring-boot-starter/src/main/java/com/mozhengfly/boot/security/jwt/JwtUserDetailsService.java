@@ -33,6 +33,9 @@ public class JwtUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("load user by {}", username);
         IUser user = userService.getUserByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("用户不存在");
+        }
         List<GrantedAuthority> authorityList = new ArrayList<>();
         authorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
         return new SecurityUserDetails(user, authorityList);
