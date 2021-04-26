@@ -42,7 +42,7 @@
         <aliyun.version>2.8.3</aliyun.version>
         <commons.net.version>3.5</commons.net.version>
         <commons.pool2.version>2.6.0</commons.pool2.version>
-        <commons.io.version>2.6</commons.io.version>
+        <commons.io.version>2.7</commons.io.version>
         <commons.lang.version>3.7</commons.lang.version>
         <commons.beanutils.version>1.9.4</commons.beanutils.version>
         <commons.jexl.version>2.1.1</commons.jexl.version>
