@@ -4,6 +4,7 @@ import com.mozhengfly.boot.tool.constants.DateConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.FastDateFormat;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.lang.NonNull;
 
 import java.util.Date;
 
@@ -20,7 +21,7 @@ public class DateConverter implements Converter<String, Date> {
     private static final String COLON = ":";
 
     @Override
-    public Date convert(String source) {
+    public Date convert(@NonNull String source) {
         source = StringUtils.trim(source);
         if (StringUtils.isBlank(source)) {
             return null;

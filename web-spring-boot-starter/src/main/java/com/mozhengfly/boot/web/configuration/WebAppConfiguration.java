@@ -3,7 +3,7 @@ package com.mozhengfly.boot.web.configuration;
 import com.mozhengfly.boot.web.converts.DateConverter;
 import com.mozhengfly.boot.web.converts.LocalDateConverter;
 import com.mozhengfly.boot.web.converts.LocalDateTimeConverter;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.web.bind.support.ConfigurableWebBindingInitializer;
@@ -13,16 +13,17 @@ import javax.annotation.PostConstruct;
 
 /**
  * WebAppConfiguration
+ *
  * @Description WebAppConfiguration
  * @Author wangchonglin
  * @Date 2020-01-06 18:24:01
  * @Version 1.0.0
  */
 @Configuration
+@AllArgsConstructor
 public class WebAppConfiguration {
 
-    @Autowired
-    private RequestMappingHandlerAdapter handlerAdapter;
+    private final RequestMappingHandlerAdapter handlerAdapter;
 
     @PostConstruct
     public void initEditableValidation() {

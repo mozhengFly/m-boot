@@ -4,7 +4,11 @@ import com.mozhengfly.boot.test.verification.UserObjectVerification;
 import com.mozhengfly.boot.verification.annotation.ObjectVerification;
 import com.mozhengfly.boot.verification.annotation.ParamVerification;
 import com.mozhengfly.boot.verification.type.EmailVerification;
+import com.mozhengfly.boot.web.translator.annotation.User;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
@@ -18,11 +22,15 @@ import java.util.List;
  */
 @Data
 @ObjectVerification(UserObjectVerification.class)
-public class User {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserInfo {
 
     @ParamVerification
     private String id;
 
+    @User
     @ParamVerification(required = false, min = 2, max = 16)
     private String name;
 

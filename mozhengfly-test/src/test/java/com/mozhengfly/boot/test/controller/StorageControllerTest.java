@@ -1,7 +1,7 @@
 package com.mozhengfly.boot.test.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mozhengfly.boot.test.vo.User;
+import com.mozhengfly.boot.test.vo.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,7 +39,7 @@ public class StorageControllerTest {
         List<String> penList = new ArrayList<>();
         penList.add("pen");
         penList.add("pen2");
-        User user = new User();
+        UserInfo user = new UserInfo();
         user.setId("123");
         user.setName("mozhengfly");
         user.setBook(new String[]{"Chinese", "English", "Math"});

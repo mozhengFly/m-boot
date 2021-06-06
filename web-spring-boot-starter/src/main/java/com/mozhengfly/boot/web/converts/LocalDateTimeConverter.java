@@ -3,6 +3,7 @@ package com.mozhengfly.boot.web.converts;
 import com.mozhengfly.boot.tool.constants.DateConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -20,7 +21,7 @@ import java.time.format.DateTimeFormatter;
 public class LocalDateTimeConverter implements Converter<String, LocalDateTime> {
 
     @Override
-    public LocalDateTime convert(String source) {
+    public LocalDateTime convert(@NonNull String source) {
         source = StringUtils.trim(source);
         if (StringUtils.isBlank(source)) {
             return null;

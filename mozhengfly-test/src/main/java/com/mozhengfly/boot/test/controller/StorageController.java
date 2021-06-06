@@ -1,12 +1,15 @@
 package com.mozhengfly.boot.test.controller;
 
-import com.mozhengfly.boot.test.vo.User;
+import com.mozhengfly.boot.test.vo.UserInfo;
 import com.mozhengfly.boot.web.annotation.ApiVersion;
 import com.mozhengfly.boot.web.rate.RateLimit;
+import com.mozhengfly.boot.web.translator.TranslateUtil;
 import io.swagger.annotations.Api;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.PatternMatchUtils;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * @Description StorageController
@@ -22,7 +25,7 @@ public class StorageController {
 
     @ApiVersion(2)
     @PostMapping("/hello")
-    public ResponseEntity hello(@RequestBody User user) {
+    public ResponseEntity hello(@RequestBody UserInfo user) {
         return ResponseEntity.ok("hello " + user.getName());
     }
 
@@ -43,5 +46,15 @@ public class StorageController {
         System.out.println(PatternMatchUtils.simpleMatch("/url/{a}}", "/url/a"));
         System.out.println(PatternMatchUtils.simpleMatch("/url/*", "/url/a"));
         return "A";
+    }
+
+    @GetMapping(value = "u")
+    public UserInfo get() {
+        return UserInfo.builder().name("hah").build();
+    }
+
+    @GetMapping(value = "uu")
+    public Map<String, String> getf() {
+        return TranslateUtil.transformBean(UserInfo.builder().name("ha22h").build());
     }
 }
