@@ -51,10 +51,10 @@ public enum JwtEnums {
     /**
      * 码值
      */
-    private int code;
+    private final int code;
 
     /**
      * 信息
      */
-    private String message;
+    private final String message;
 }

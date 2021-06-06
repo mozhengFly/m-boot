@@ -23,7 +23,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
-        log.error("token校验失败", e);
+        log.debug("token校验失败", e);
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "没有凭证");
     }
 }

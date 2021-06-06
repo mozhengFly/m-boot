@@ -6,6 +6,8 @@ import com.mozhengfly.boot.security.jwt.JwtTokenProvider;
 import com.mozhengfly.boot.security.jwt.JwtUserDetailsService;
 import com.mozhengfly.boot.security.properties.JwtProperties;
 import com.mozhengfly.boot.security.service.IUserService;
+import lombok.AllArgsConstructor;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;

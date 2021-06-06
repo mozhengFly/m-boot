@@ -1,5 +1,7 @@
 package com.mozhengfly.boot.security.service;
 
+import com.mozhengfly.boot.security.pojo.AuthorityUser;
+
 /**
  * IUserService
  *
@@ -15,5 +17,5 @@ public interface IUserService {
      * @param username
      * @return
      */
-    IUser getUserByUsername(String username);
+    AuthorityUser getUserByUsername(String username);
 }

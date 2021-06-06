@@ -1,18 +1,13 @@
 package com.mozhengfly.boot.security.jwt;
 
-import com.mozhengfly.boot.security.service.IUser;
+import com.mozhengfly.boot.security.pojo.AuthorityUser;
 import com.mozhengfly.boot.security.service.IUserService;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * JwtUserDetailsService
@@ -32,12 +27,10 @@ public class JwtUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("load user by {}", username);
-        IUser user = userService.getUserByUsername(username);
+        AuthorityUser user = userService.getUserByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("用户不存在");
         }
-        List<GrantedAuthority> authorityList = new ArrayList<>();
-        authorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
-        return new SecurityUserDetails(user, authorityList);
+        return new SecurityUserDetails(user.getUser(), user.generateGrantedAuthority());
     }
 }

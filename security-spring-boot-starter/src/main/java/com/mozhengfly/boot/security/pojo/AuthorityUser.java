@@ -1,11 +1,16 @@
 package com.mozhengfly.boot.security.pojo;
 
 import com.mozhengfly.boot.security.service.IUser;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.util.CollectionUtils;
 
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * AuthorityUser
@@ -16,6 +21,9 @@ import java.util.List;
  */
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AuthorityUser implements Serializable {
 
     /**
@@ -31,10 +39,25 @@ public class AuthorityUser implements Serializable {
     /**
      * 角色集合
      */
-    private List<String> roles;
+    private Set<String> roles;
 
     /**
      * 权限集合
      */
-    private List<String> permissions;
+    private Set<String> permissions;
+
+    public Set<GrantedAuthority> generateGrantedAuthority() {
+        Set<GrantedAuthority> set = new HashSet<>();
+        if (!CollectionUtils.isEmpty(this.permissions)) {
+            this.permissions.forEach(item -> {
+                set.add(new SimpleGrantedAuthority(item));
+            });
+        }
+        if (!CollectionUtils.isEmpty(this.roles)) {
+            this.roles.forEach(item -> {
+                set.add(new SimpleGrantedAuthority("ROLE_" + item));
+            });
+        }
+        return set;
+    }
 }

@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * SecurityUserDetails
@@ -18,11 +19,11 @@ import java.util.Collection;
 @Accessors(chain = true)
 public class SecurityUserDetails implements UserDetails {
 
-    private IUser user;
+    private final IUser user;
 
-    private Collection<? extends GrantedAuthority> authorities;
+    private final Set<GrantedAuthority> authorities;
 
-    public SecurityUserDetails(IUser user, Collection<? extends GrantedAuthority> authorities){
+    public SecurityUserDetails(IUser user, Set<GrantedAuthority> authorities){
         this.user = user;
         this.authorities = authorities;
     }
@@ -44,12 +45,12 @@ public class SecurityUserDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
